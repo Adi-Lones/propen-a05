@@ -2,15 +2,16 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["driverAdapters"]
 }
 
-
 datasource db {
-  provider = "postgresql"
-  url      = env("DB_URL")
+  provider     = "mysql"
+  url          = env("DATABASE")
+  relationMode = "prisma"
 }
+
 model Brand {
   id       Int       @id @default(autoincrement())
   name     String
@@ -43,20 +44,20 @@ model Ticket {
 }
 
 model User {
-  id           Int    @id @default(autoincrement())
-  username     String     @unique
-  email        String     @unique
-  password     String     
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Customer {
-  id              Int      @id @default(autoincrement())
-  name            String
-  gender          String
-  year_of_birth   Int
-  address         String
+  id            Int    @id @default(autoincrement())
+  name          String
+  gender        String
+  year_of_birth Int
+  address       String
 }
 
 model Roles {
