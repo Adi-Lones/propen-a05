@@ -98,7 +98,7 @@ const Ticket = () => {
                         <td>{formatDateTime(new Date(data.lastUpdated))}</td>
                         <td className='px-4'>{data.product}</td>
                         <td>{data.category}</td>
-                        <td className='truncate max-w-40 px-4'>{data.description}</td>
+                        <td className='truncate max-w-40 px-4 text-left'>{data.description}</td>
                         <td className='px-4'><TableStatus status={data.status} /></td>
                         <td><TableButton label='Details' onClick={() => router.push(`/tickets/${data.ID}`)} borderColor='border-[#a16207]' textColor='text-[#a16207]' /></td>
                     </tr>
