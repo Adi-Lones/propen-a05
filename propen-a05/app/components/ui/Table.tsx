@@ -11,7 +11,7 @@ const Table = ({header, children}: TableProps) => {
         <thead className='border-b border-[#cfcecf]'>
             <tr>
                 {header.map((item, index) => (
-                    <th key={index}  className='py-[18px] px-4 font-semibold text-sm'>{item}</th>
+                    <th key={index}  className='py-[18px] px-7 font-semibold text-sm'>{item}</th>
                 ))}
             </tr>
         </thead>
