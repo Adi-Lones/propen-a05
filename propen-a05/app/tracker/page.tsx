@@ -19,7 +19,20 @@ const StatusTrackerPage = () => {
         "Brand": "Brand 1",
         "Category": "Category 1",
         "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris porttitor arcu tempor cursus dignissim. Nulla facilisi. Integer erat felis, aliquet at euismod at, cursus ut velit. Quisque dictum, nisl in cursus bibendum, nisi tellus vulputate lacus, vel gravida nisi ex commodo nisl. Sed nec justo leo. Cras magna felis, luctus nec vestibulum in, sodales non dui. Quisque facilisis, lorem eu semper congue, mauris magna viverra mi, non eleifend lectus urna non erat.",
-        "Status": "In Progress",
+        "Statuses": [
+            {
+                "status": "Submitted",
+                "date": "2021-09-21",
+            },
+            {
+                "status": "Reviews",
+                "date": "2021-09-21",
+            },
+            {
+                "status": "In Progress",
+                "date": "2021-09-21",
+            },
+        ],
         "review": "",
     };
     const [reviewPopup, setReviewPopup] = useState(false);
@@ -53,7 +66,7 @@ const StatusTrackerPage = () => {
             {
                 reviewPopup && (
                     <div className="absolute bg-black/70 inset-0 flex items-center justify-center" onClick={() => setReviewPopup(false)}>
-                        <form action="POST" className="bg-white rounded-lg p-5 space-y-4 sm:space-y-8" onSubmit={handleReviewSubmit} onClick={e => e.stopPropagation()}>
+                        <form action="POST" className="bg-white rounded-lg p-5 space-y-4 sm:space-y-8 max-w-xs sm:max-w-none" onSubmit={handleReviewSubmit} onClick={e => e.stopPropagation()}>
                             <div className="flex justify-between items-center font-semibold text-xl">
                                 <h1>Give us a review</h1>
                                 <button onClick={() => setReviewPopup(false)}>
@@ -101,7 +114,7 @@ const StatusTrackerPage = () => {
                             </div>
                             <div>
                                 <h2 className='font-medium mb-2'>Share your feedback (optional)</h2>
-                                <textarea name="" cols={45} rows={4} className='bg-white border p-3 rounded-lg' placeholder="Drop your comments here, we're all ears!" onChange={e => setFeedback(e.target.value)}></textarea>
+                                <textarea name="" cols={45} rows={4} className='bg-white border p-3 rounded-lg max-w-60 sm:max-w-none' placeholder="Drop your comments here, we're all ears!" onChange={e => setFeedback(e.target.value)}></textarea>
                             </div>
                             <button className='flex py-2 rounded-lg items-center font-medium w-full justify-center bg-[#3D3FDF] text-white' type='submit'>Submit</button>
                         </form>
@@ -109,7 +122,7 @@ const StatusTrackerPage = () => {
                 )
             }
             {/* Tracker Section */}
-            <TrackerGroup status='Submitted' />
+            <TrackerGroup status={dummyData.Statuses} />
             {/* Table Section */}
             <h3 className='text-center text-[#344054] mt-14 text-wrap px-10 sm:px-0'>We're actively working on your issue. Check the tracker for updates. Thank you for your patience!
                 In Progress
@@ -123,7 +136,7 @@ const StatusTrackerPage = () => {
                         <td>{dummyData.Brand}</td>
                         <td>{dummyData.Category}</td>
                         <td className='py-4 max-w-40 text-justify'>{dummyData.Description}</td>
-                        <td className='px-4'><TableStatus status={dummyData.Status} /></td>
+                        <td className='px-4'><TableStatus status={dummyData.Statuses[dummyData.Statuses.length - 1].status} /></td>
                     </tr>
                 </Table>
             </div>

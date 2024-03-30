@@ -12,7 +12,7 @@ enum TrackerStatus {
 }
 
 interface TrackerGroupProps {
-    status: string;
+    status: { status: string, date: string }[];
 }
 
 const trackerIconsData = [
@@ -45,28 +45,32 @@ const trackerIconsData = [
 ];
 
 const TrackerGroup = ({ status }: TrackerGroupProps) => {
-    const [targetStatusCount, setTargetStatusCount] = useState<number>(0);
-
-    useEffect(() => {
-        setTargetStatusCount(TrackerStatus[status as keyof typeof TrackerStatus]);
-    }, [status]);
 
     return (
-        <div className='items-center flex'>
-            {trackerIconsData.map(({ label, icon }, index) => (
-                <React.Fragment key={index}>
-                    <TrackerIcon
-                        date='10/01/2024 10:13'
-                        icon={icon}
-                        label={label}
-                        isActive={TrackerStatus[label as keyof typeof TrackerStatus] <= targetStatusCount}
-                    />
-                    {index < trackerIconsData.length - 1 && (
-                        <hr className={cn('h-1 w-[130px] mb-16 rounded-full', TrackerStatus[label as keyof typeof TrackerStatus] < targetStatusCount ? "bg-[#3D3FDF]" : "bg-[#98A2B3]")} />
-                    )}
-                </React.Fragment>
-            ))}
-        </div>
+        <>
+            <div className='items-center hidden sm:flex'>
+                {trackerIconsData.map(({ label, icon }, index) => (
+                    <React.Fragment key={index}>
+                        <TrackerIcon
+                            date='10/01/2024 10:13'
+                            icon={icon}
+                            label={label}
+                            isActive={TrackerStatus[label as keyof typeof TrackerStatus] <= status.length}
+                        />
+                        {index < trackerIconsData.length - 1 && (
+                            <hr className={cn('h-1 w-[130px] mb-16 rounded-full', TrackerStatus[label as keyof typeof TrackerStatus] < status.length ? "bg-[#3D3FDF]" : "bg-[#98A2B3]")} />
+                        )}
+                    </React.Fragment>
+                ))}
+            </div>
+            <div className='sm:hidden'>
+                <TrackerIcon
+                    date='10/01/2024 10:13'
+                    icon={trackerIconsData[status.length - 1].icon}
+                    label={trackerIconsData[status.length - 1].label}
+                    isActive={true} />
+            </div>
+        </>
     );
 }
 
