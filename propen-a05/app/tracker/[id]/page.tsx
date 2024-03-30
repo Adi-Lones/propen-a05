@@ -2,15 +2,19 @@
 import React, { useState } from 'react'
 import Image from 'next/image';
 import { FaStar } from 'react-icons/fa';
+import { useParams, useRouter } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
-import Table from '../components/ui/Table'
-import TableStatus from '../components/ui/TableStatus';
+import Table from '../../components/ui/Table'
+import TableStatus from '../../components/ui/TableStatus';
 
-import TrackerGroup from './components/TrackerGroup';
+import TrackerGroup from '../components/TrackerGroup';
 
 
 const StatusTrackerPage = () => {
+    const params = useParams();
+    const router = useRouter();
+    const id = params.id;
     const tableHeaders = ["ID", "Date", "Product", "Brand", "Category", "Description", "Status"];
     const dummyData = {
         "ID": "1",
@@ -58,6 +62,8 @@ const StatusTrackerPage = () => {
         console.log(rating);
         console.log(likes);
         console.log(feedback);
+        setReviewPopup(false);
+        router.push(`/tracker/${id}/submitted`);
     }
 
     return (
