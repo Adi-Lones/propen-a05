@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 
 import TableStatus from '@/app/components/ui/TableStatus';
 import PrimaryButton from '@/app/components/ui/PrimaryButton';
-import TableButton from '@/app/components/ui/TableButton';
 import TicketTile from '@/app/components/ui/TicketTile';
 import { formatDateTime } from '../page';
 

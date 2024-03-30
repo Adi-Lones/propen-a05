@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils';
 import Table from '../components/ui/Table'
 import TableStatus from '../components/ui/TableStatus';
 
+import TrackerGroup from './components/TrackerGroup';
+
 
 const StatusTrackerPage = () => {
     const tableHeaders = ["ID", "Date", "Product", "Brand", "Category", "Description", "Status"];
@@ -46,12 +48,12 @@ const StatusTrackerPage = () => {
     }
 
     return (
-        <div className='bg-white w-full min-h-[100vh] flex flex-col items-center justify-center relative text-[#344054]'>
+        <div className='bg-white w-full min-h-[100vh] flex flex-col items-center justify-center relative text-[#344054] py-10 sm:py-0'>
             {/* Review Popup */}
             {
                 reviewPopup && (
                     <div className="absolute bg-black/70 inset-0 flex items-center justify-center" onClick={() => setReviewPopup(false)}>
-                        <form action="POST" className="bg-white rounded-lg p-5 space-y-8" onSubmit={handleReviewSubmit} onClick={e => e.stopPropagation()}>
+                        <form action="POST" className="bg-white rounded-lg p-5 space-y-4 sm:space-y-8" onSubmit={handleReviewSubmit} onClick={e => e.stopPropagation()}>
                             <div className="flex justify-between items-center font-semibold text-xl">
                                 <h1>Give us a review</h1>
                                 <button onClick={() => setReviewPopup(false)}>
@@ -107,12 +109,12 @@ const StatusTrackerPage = () => {
                 )
             }
             {/* Tracker Section */}
-            <div>Tracker Section</div>
+            <TrackerGroup status='Submitted' />
             {/* Table Section */}
-            <h3 className='text-center text-[#344054]'>We're actively working on your issue. Check the tracker for updates. Thank you for your patience!
+            <h3 className='text-center text-[#344054] mt-14 text-wrap px-10 sm:px-0'>We're actively working on your issue. Check the tracker for updates. Thank you for your patience!
                 In Progress
             </h3>
-            <div className='mt-4'>
+            <div className='mt-4 w-full px-4 sm:px-20 overflow-x-scroll'>
                 <Table header={tableHeaders} headerColor='bg-[#f2f5f6]'>
                     <tr className='text-center'>
                         <td>{dummyData.ID}</td>
@@ -120,7 +122,7 @@ const StatusTrackerPage = () => {
                         <td>{dummyData.Product}</td>
                         <td>{dummyData.Brand}</td>
                         <td>{dummyData.Category}</td>
-                        <td className='line-clamp-3 max-w-40 text-left'>{dummyData.Description}</td>
+                        <td className='py-4 max-w-40 text-justify'>{dummyData.Description}</td>
                         <td className='px-4'><TableStatus status={dummyData.Status} /></td>
                     </tr>
                 </Table>
@@ -129,7 +131,9 @@ const StatusTrackerPage = () => {
                 <Image src={'/rafiki.svg'} width={268} height={200} alt='Tracker Logo' />
             </div>
             <div className='max-w-60 w-full'>
-                <button className={cn("flex py-4 px-5 rounded-lg items-center font-medium w-full justify-center", dummyData.review ? "bg-[#E4E7EC] text-[#98A2B3]" : "bg-[#3D3FDF] text-white")} disabled={dummyData.review ? true : false} onClick={() => {setReviewPopup(true); console.log(reviewPopup)}}>
+                <button className={cn("flex py-4 px-5 rounded-lg items-center font-medium w-full justify-center", dummyData.review ? "bg-[#E4E7EC] text-[#98A2B3]" : "bg-[#3D3FDF] text-white")} disabled={dummyData.review ? true : false}
+                    onClick={() => setReviewPopup(true)}
+                >
                     Give us a review
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-6 h-6 ml-2">
