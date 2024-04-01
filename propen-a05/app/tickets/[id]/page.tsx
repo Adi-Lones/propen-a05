@@ -46,10 +46,10 @@ const TicketDetailPage = () => {
     }
 
     return (
-        <div className='flex flex-col w-full'>
-            <button onClick={router.back} className='w-min flex items-center text-[#344054] font-medium'>
+        <div className='flex flex-col'>
+            <button onClick={router.back} className='w-min flex text-[#344054] font-medium'>
                 <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-2 mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-2 mt-[1px]">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
                     </svg>
                 </span>

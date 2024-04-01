@@ -133,7 +133,7 @@ const StatusTrackerPage = () => {
             <h3 className='text-center text-[#344054] mt-14 text-wrap px-10 sm:px-0'>We're actively working on your issue. Check the tracker for updates. Thank you for your patience!
                 In Progress
             </h3>
-            <div className='mt-4 w-full px-4 sm:px-20 overflow-x-scroll'>
+            <div className='mt-4 w-full px-4 sm:px-20 overflow-x-scroll sm:overflow-x-hidden'>
                 <Table header={tableHeaders} headerColor='bg-[#f2f5f6]'>
                     <tr className='text-center'>
                         <td>{dummyData.ID}</td>
